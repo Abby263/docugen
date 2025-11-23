@@ -43,6 +43,18 @@ The system employs a multi-agent collaborative architecture, orchestrating agent
 
 ---
 
+## 📸 Screenshots
+
+### Create New Project - Project Details
+![Create New Project - Project Details](docs/Dashboard_1.png)
+*Create a new project with detailed configuration options, including project title, description, image generation toggle, and research query input.*
+
+### Create New Project - Document Type Selection
+![Create New Project - Document Type Selection](docs/Dashboard_2.png)
+*Select document type (General Report, Analysis, Research, Daily Brief, or Presentation) and output format (HTML or Markdown) for your AI-generated content.*
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -149,28 +161,42 @@ python cli.py ppt "Your presentation topic"
 
 ### Multi-Agent Workflow
 
-The core engine uses LangGraph-based state machine workflow:
+The core engine uses LangGraph-based state machine workflow with conditional routing based on document type:
 
 ```mermaid
-graph LR
-    A[👤 User Input] --> B[🔍 Requirement Analysis]
-    B --> C[📋 Task Decomposition]
-    C --> D[🌐 Parallel Search]
-    D --> E[📦 Content Integration]
-    E --> F[✨ Intelligent Generation]
-    F --> G[✅ Quality Review]
-    G --> H[🔄 Format Conversion]
-    H --> I[📤 Export Output]
+graph TD
+    A[👤 User Input] --> B[🎯 Output Type Detector]
+    B -->|Report/PPT| C[📋 Task Decomposer]
+    B -->|Fiction| F1[📚 Fiction Elements Designer]
+    
+    C --> D[🌐 Deep Searcher]
+    F1 --> C
+    
+    D -->|Report/PPT| E[🔍 Search Analyzer]
+    D -->|Fiction| F2[📖 Fiction Outline Generator]
+    
+    E -->|Report| G[📦 Content Synthesizer]
+    E -->|PPT| H[📊 PPT Generator]
+    
+    G --> I[✨ Report Generator]
+    F2 --> J[✍️ Fiction Writer]
+    
+    I --> K[📤 Export Output]
+    H --> K
+    J --> K
 
     style A fill:#e3f2fd,stroke:#1976d2
     style B fill:#f3e5f5,stroke:#7b1fa2
     style C fill:#f3e5f5,stroke:#7b1fa2
     style D fill:#fff3e0,stroke:#f57c00
     style E fill:#fff3e0,stroke:#f57c00
-    style F fill:#e8f5e9,stroke:#388e3c
     style G fill:#e8f5e9,stroke:#388e3c
-    style H fill:#fce4ec,stroke:#c2185b
-    style I fill:#fce4ec,stroke:#c2185b
+    style I fill:#e8f5e9,stroke:#388e3c
+    style H fill:#e8f5e9,stroke:#388e3c
+    style F1 fill:#fce4ec,stroke:#c2185b
+    style F2 fill:#fce4ec,stroke:#c2185b
+    style J fill:#fce4ec,stroke:#c2185b
+    style K fill:#fce4ec,stroke:#c2185b
 ```
 
 ### Content Generation Workflow
@@ -181,25 +207,37 @@ sequenceDiagram
     participant User as 👤 User
     participant Web as 🌐 Web App
     participant API as 🔌 Backend API
-    participant Queue as 📋 Task Queue
-    participant Worker as ⚙️ Worker
-    participant Engine as 🤖 AI Engine
+    participant BackgroundTask as ⚙️ Background Task
+    participant Agent as 🤖 DeepSearch Agent
+    participant Coordinator as 🧠 LangGraph Coordinator
     participant Storage as 💾 Storage
+    participant WebSocket as 📡 WebSocket Manager
 
     User->>Web: Create project
     Web->>API: POST /api/projects
-    API->>Queue: Enqueue task
+    API->>API: Create project in DB
+    API->>BackgroundTask: Add background task
     API-->>Web: Return project ID
     Web->>User: Show progress (0%)
 
-    Queue->>Worker: Process task
-    Worker->>Engine: Start generation
-    Engine->>Engine: Search & analyze
-    Engine->>Engine: Generate content
-    Engine->>Storage: Save document
-    Engine-->>Worker: Generation complete
-    Worker->>API: Update project status
-    API->>Web: WebSocket update (100%)
+    BackgroundTask->>API: Update status (PROCESSING, 0%)
+    API->>WebSocket: Send progress update
+    WebSocket->>Web: WebSocket message (0%)
+    Web->>User: Show progress (0%)
+
+    BackgroundTask->>Agent: Initialize DeepSearchAgent
+    Agent->>Coordinator: Process query with LangGraph
+    Coordinator->>Coordinator: Execute workflow nodes
+    
+    Note over Coordinator: Output Type Detection<br/>Task Decomposition<br/>Deep Search<br/>Content Synthesis<br/>Report Generation
+    
+    Coordinator->>Storage: Save document
+    Coordinator-->>Agent: Return result
+    Agent-->>BackgroundTask: Generation complete
+    
+    BackgroundTask->>API: Update status (COMPLETED, 100%)
+    API->>WebSocket: Send completion notification
+    WebSocket->>Web: WebSocket message (100%)
     Web->>User: Show completion
 ```
 
