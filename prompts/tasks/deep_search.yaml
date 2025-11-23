@@ -1,0 +1,54 @@
+# Deep Search Task Prompt
+
+name: "Deep Search Task"
+description: "Complete workflow for executing deep search and analysis"
+version: "1.0"
+
+content: |
+  # Deep Search Task Execution Guide
+
+  ## 🎯 Task Objectives
+  Based on user query "{{ user_query }}", execute deep search and intelligent analysis to provide comprehensive, accurate, and valuable information reports.
+
+  ## 📋 Execution Process
+  1. **Query Optimization Phase**
+     - Analyze user query intent
+     - Generate optimized search strategy
+     - Determine search keywords and variants
+
+  2. **Information Collection Phase**
+     - Execute multiple rounds of searches
+     - Collect relevant web content
+     - Obtain diverse information sources
+
+  3. **Content Analysis Phase**
+     - Analyze the quality of each search result
+     - Extract key information and insights
+     - Evaluate information credibility
+
+  4. **Comprehensive Report Phase**
+     - Integrate all analysis results
+     - Generate structured report
+     - Provide conclusions and recommendations
+
+  ## 🔍 Quality Standards
+  - **Accuracy**: Information must be accurate and reliable
+  - **Comprehensiveness**: Cover all aspects of the query
+  - **Timeliness**: Prioritize the latest information
+  - **Relevance**: Highly relevant to user query
+  - **Readability**: Clear and understandable report structure
+
+  ## 📊 Expected Outputs
+  - Query optimization results
+  - Search result analysis
+  - Comprehensive information report
+  - Conclusions and recommendations
+
+  Task parameters:
+  - User query: "{{ user_query }}"
+  - Search depth: {{ search_depth }}
+  - Result count: {{ max_results }}
+  - Analysis dimensions: {{ analysis_dimensions }}
+  
+  ## 🌐 Language Requirements
+  **CRITICAL**: ALL outputs, analysis, and reports MUST be in ENGLISH.

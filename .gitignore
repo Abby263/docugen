@@ -1,0 +1,342 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.test
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Project-specific files
+results/
+logs/
+temp/
+cache/
+*.tmp
+*.bak
+
+# Storage directories (user-generated content)
+/storage/
+/backend/storage/
+storage/
+backend/storage/
+!storage/.gitkeep
+!backend/storage/.gitkeep
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-journal
+docugen_saas.db
+backend/docugen_saas.db
+/docugen_saas.db
+/backend/docugen_saas.db
+
+# Screenshots and test images (keep docs and frontend public assets)
+shots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+!docs/**/*.png
+!docs/**/*.jpg
+!frontend/public/**/*.png
+!frontend/public/**/*.jpg
+!frontend/src/**/*.png
+!frontend/src/**/*.jpg
+
+# 配置文件（保留示例文件）
+config/llm_config.yaml
+!config/llm_config.example.yaml
+
+# API密钥和敏感信息
+*.key
+*.pem
+*.p12
+secrets/
+
+# Data files (keep config JSON files)
+data/
+*.csv
+# Only ignore data JSON files, not config files
+# *.json
+# !package.json
+# !tsconfig.json
+# !*.config.json
+*.xml
+!src/data/
+!tests/data/
+
+# 模型文件
+models/
+*.pkl
+*.joblib
+*.h5
+*.pb
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+tmp/
+temp/
+.tmp/
+
+
+.codebuddy/
+
+output/
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Frontend build outputs
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.next/
+frontend/out/
+frontend/.svelte-kit/
+
+# Frontend dependencies
+frontend/node_modules/
+# Note: package.json and package-lock.json should be committed
+
+# React / Vite
+*.local
+.vite/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# Generated documentation
+docs/_build/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/node_modules/
+site/
+
+# Generated HTML files (keep templates and frontend files)
+*.html
+!templates/**/*.html
+!frontend/index.html
+!frontend/public/**/*.html
+!src/agents/**/*.html
+!docs/**/*.md
+
+# LangGraph visualizations (generated in docs/)
+docs/*.png
+docs/*.svg
+docs/*.html
+
+# LangFuse / Monitoring
+langfuse/
+monitoring/logs/
+
+# Playwright (consolidated)
+playwright-report/
+test-results/
+playwright/.cache/
+playwright/.ms-playwright/
+
+# Redis dumps
+dump.rdb
+*.rdb
+
+# Temporary uploads
+uploads/
+backend/storage/uploads/
+backend/storage/outputs/
+backend/storage/images/
+storage/uploads/
+storage/outputs/
+storage/images/
+
+# API keys and secrets
+*.key
+*.pem
+*.p12
+secrets/
+.secrets/
+config/env.yaml
+!config/env.example.yaml
+!.env.example
+
+# IDE and editor files
+.codebuddy/
+.cursor/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini

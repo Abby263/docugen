@@ -1,0 +1,74 @@
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: docugen-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./docugen_saas.db
+      - REDIS_URL=redis://redis:6379/0
+    env_file:
+      - .env
+    volumes:
+      - ./storage:/app/storage
+      - ./.env:/app/.env
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - docugen-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: docugen-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - docugen-network
+
+  # Redis (for task queue)
+  redis:
+    image: redis:7-alpine
+    container_name: docugen-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - docugen-network
+
+  # PostgreSQL (optional, for production)
+  # Uncomment if you want to use PostgreSQL instead of SQLite
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: docugen-postgres
+  #   environment:
+  #     - POSTGRES_DB=docugen
+  #     - POSTGRES_USER=docugen
+  #     - POSTGRES_PASSWORD=your_secure_password
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - docugen-network
+
+volumes:
+  redis-data:
+  # postgres-data:
+
+networks:
+  docugen-network:
+    driver: bridge
+

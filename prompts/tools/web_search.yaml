@@ -1,0 +1,76 @@
+# Web Search Tool Prompt
+
+name: "Web Search Tool"
+description: "Guide on how to effectively use web search functionality"
+version: "1.0"
+
+content: |
+  # Web Search Tool Usage Guide
+
+  ## 🔧 Tool Functions
+  Use DeepSearch's web search functionality to obtain high-quality search results and content analysis.
+
+  ## 📝 Usage Methods
+  ```python
+  # Basic search
+  search_result = await web_search(
+      query="search query",
+      max_results=5,
+      search_engine="duckduckgo"
+  )
+  
+  # Advanced search
+  search_result = await web_search(
+      query="search query",
+      max_results=10,
+      search_engine="duckduckgo",
+      filters={
+          "time_range": "recent",
+          "content_type": "article"
+      }
+  )
+  ```
+
+  ## 📊 Return Format
+  The search tool returns data in the following structure:
+  ```json
+  {
+    "query": "search query",
+    "engine": "search engine",
+    "items": [
+      {
+        "url": "page URL",
+        "title": "page title",
+        "text": "page content",
+        "length": 1234,
+        "screenshot_path": "screenshot path",
+        "og_image_url": "social media image",
+        "first_image_url": "first image",
+        "error": null
+      }
+    ],
+    "total_found": 5,
+    "success_count": 5,
+    "error_count": 0,
+    "execution_time": 15.67
+  }
+  ```
+
+  ## 🎯 Best Practices
+  1. **Query Optimization**: Use specific, relevant keywords
+  2. **Result Filtering**: Adjust the number of search results as needed
+  3. **Error Handling**: Check for error messages in search results
+  4. **Content Validation**: Verify the quality and relevance of search results
+
+  ## ⚠️ Notes
+  - Search may take considerable time, please be patient
+  - Some websites may be inaccessible or difficult to scrape
+  - Multiple queries recommended for more comprehensive results
+  - Check the timeliness of search results
+
+  Current search task: {{ search_task }}
+  Target query: "{{ target_query }}"
+  Expected result type: {{ expected_result_type }}
+  
+  ## 🌐 Language Requirements
+  **CRITICAL**: All search operations and outputs MUST be in ENGLISH.
